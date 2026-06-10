@@ -1,0 +1,55 @@
+name: Multi-Platform Testing Workflow
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ubuntu-job:
+    name: Ubuntu Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print Ubuntu system information
+        run: uname -a
+
+      - name: Create and display file
+        run: |
+          echo "This file was created on Ubuntu." > ubuntu-output.txt
+          cat ubuntu-output.txt
+
+  windows-job:
+    name: Windows Job
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print Windows system information
+        run: systeminfo
+
+      - name: Create and display file
+        run: |
+          echo "This file was created on Windows." > windows-output.txt
+          type windows-output.txt
+
+  macos-job:
+    name: macOS Job
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print macOS system information
+        run: uname -a
+
+      - name: Create and display file
+        run: |
+          echo "This file was created on macOS." > macos-output.txt
+          cat macos-output.txt
